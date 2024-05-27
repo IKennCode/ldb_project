@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search here" aria-label="Search">
-                        <button class="btn btn-outline-success  text-light" type="submit">Search Employee</button>
+                        <button class="btn btn-outline-success  text-light" type="submit">Search</button>
                     </form>
             </div>
            

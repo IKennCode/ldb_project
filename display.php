@@ -1,4 +1,5 @@
 
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-custom">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="user.php">
                 <img src="ldb.ico" alt="Logo" height="60" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                            <a class="nav-link active  text-light" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active  text-light" aria-current="page" href="user.php">Home</a>
                             </li>
                             <li class="nav-item">
                             <a class="nav-link  text-light" href="#">About</a>
@@ -64,18 +65,44 @@
                             <th scope="col">Email</th>
                             <th scope="col">Mobile</th>
                             <th scope="col">Password</th>
+                            <th scope="col">Operation</th>
+
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <tbody>
-                            <tr>
+                            <?php
+                                include 'connect.php';
+                                $sql = "Select * from `kennethcrud`";
+                                $result = mysqli_query($con, $sql);
+                                if($result) {
+                                    while($row = mysqli_fetch_assoc($result)) {
+                                        $id = $row['id'];
+                                        $name = $row['name'];
+                                        $email = $row['email'];
+                                        $mobile = $row['mobile'];
+                                        $password = $row['password'];
+
+                                        echo '<tr>
+                                        <th scope="row">'.$id.'</th>
+                                        <td>'.$name.'</td>
+                                        <td>'.$email.'</td>
+                                        <td>'.$mobile.'</td>
+                                        <td>'.$password.'</td>
+                                    </tr> ';
+
+                                    }
+                                }
+
+                            ?>
+                            <!-- <tr>
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
                                 <td>@mdo</td>
                                 <td>@mdo</td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                            <!-- <tr>
                                 <th scope="row">2</th>
                                 <td>Jacob</td>
                                 <td>Thornton</td>
@@ -87,7 +114,7 @@
                                 <td colspan="2">Larry the Bird</td>
                                 <td>@twitter</td>
                                 <td>@twitter</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                 </table>
             

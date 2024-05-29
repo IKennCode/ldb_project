@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-custom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="user.php">
             <img src="ldb.ico" alt="Logo" height="60" width="100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                        <a class="nav-link active  text-light" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active  text-light" aria-current="page" href="user.php">Home</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link  text-light" href="#">About</a>
@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
         <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-        <button type="submit" name="submit" value="submit" class="btn btn-primary" id="liveToastBtn">Submit</button>
+        <button type="submit" name="submit" value="submit" class="btn btn-primary" id="liveToastBtn"><a href="display.php" class="text-light">Submit</a></button>
 
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">

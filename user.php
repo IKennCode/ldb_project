@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
     if ($stmt->execute()) {
         // echo "Data Inserted Successfully!";
         $success = true; // Set success flag to true
+        header('location:display.php');
     } else {
         die("Error: " . $stmt->error);
     }
@@ -70,17 +71,17 @@ if (isset($_POST['submit'])) {
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li> -->
                     </ul>
-                    <form class="d-flex" role="search">
+                    <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search here" aria-label="Search">
                         <button class="btn btn-outline-success  text-light" type="submit">Search</button>
-                    </form>
+                    </form> -->
             </div>
            
         </div>
     </nav>
     <!-- Body -->
     <div class="container">
-    <form class="px-5 pt-5" method="post">
+    <form class="px-5 pt-5 needs-validation" method="post" novalidate>
         <div class="row">
             <div class="col-lg-6">
                 <!-- First group of form elements -->
@@ -88,7 +89,9 @@ if (isset($_POST['submit'])) {
                     <h5>
                         <label for="name" class="form-label">Name</label>
                     </h5>
-                    <input type="text" name="name" class="form-control" placeholder="Enter your Name" id="name" autocomplete="off" aria-describedby="emailHelp">
+                    <input type="text" name="name" class="form-control" placeholder="Enter your Name" id="name" autocomplete="off" aria-describedby="emailHelp" required>
+                        <div class="invalid-feedback">Please provide a valid name.</div>
+                        <div class="valid-feedback form-text">Looks good!</div>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -97,8 +100,10 @@ if (isset($_POST['submit'])) {
                     <h5>
                         <label for="email" class="form-label">Email</label>
                     </h5>
-                    <input type="text" name="email" class="form-control" placeholder="Enter your Email" autocomplete="off" id="email">
-                    <div class="form-text">We'll never share your email with anyone else.</div>
+                    <input type="text" name="email" class="form-control" placeholder="Enter your Email" autocomplete="off" id="email" required>
+                        <div class="invalid-feedback">Please provide a valid email.</div>
+                            <div class="valid-feedback form-text">What a nice email!</div>
+                                <div class="form-text">We'll never share your email with anyone else.</div>
                 </div>
             </div>
         </div>
@@ -109,7 +114,10 @@ if (isset($_POST['submit'])) {
                     <h5>
                         <label for="mobile" class="form-label">Mobile</label>
                     </h5>
-                    <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter your Mobile Number" autocomplete="off" >
+                    <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter your Mobile Number" autocomplete="off" required >
+                        <div class="invalid-feedback">Please provide a valid mobile number Ex.09124356541.</div>
+                            <div class="invalid-feedback">Make sure it is 11-digit number.</div>
+                                <div class="valid-feedback form-text">Ok Good!</div>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -118,13 +126,17 @@ if (isset($_POST['submit'])) {
                     <h5>
                         <label for="password" class="form-label">Password</label>
                     </h5>
-                    <input type="password" name="password" class="form-control" placeholder="Enter your Password" id="password" autocomplete="off" aria-describedby="emailHelp2">
+                    <input type="password" name="password" class="form-control" placeholder="Enter your Password" id="password" autocomplete="off" aria-describedby="emailHelp2" required>
+                        <div class="invalid-feedback">Please provide a valid password.</div>
+                        <div class="invalid-feedback">Make sure you You have atleast one Uppcase letter</div>
+                        <div class="invalid-feedback">Make sure you have unique character included(@,#,!).</div>
+                            <div class="valid-feedback form-text">Looks good!</div>
                     
                 </div>
             </div>
         </div>
         <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-        <button type="submit" name="submit" value="submit" class="btn btn-primary" id="liveToastBtn"><a href="display.php" class="text-light">Submit</a></button>
+        <button type="submit" name="submit" value="submit" class="btn btn-primary" id="liveToastBtn" href="display.php">Submit</button>
 
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -144,14 +156,35 @@ if (isset($_POST['submit'])) {
 
        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        <?php if ($success): ?>
-        document.addEventListener('DOMContentLoaded', function() {
-            var toast = new bootstrap.Toast(document.getElementById('liveToast'));
-            toast.show();
-        });
-        <?php endif; ?>
-    </script>
+        <script>
+            <?php if ($success): ?>
+            document.addEventListener('DOMContentLoaded', function() {
+                var toast = new bootstrap.Toast(document.getElementById('liveToast'));
+                toast.show();
+            });
+            <?php endif; ?>
+        </script>
+            <script>
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                    }, false)
+                })
+                })()
+            </script>
 
  
 </body>
